@@ -1,0 +1,33 @@
+<div class="form-inline">
+    <button class="btn btn-primary fa fa-plus" ng-click="ctrl.newPerson()"></button>
+    <span style="float: right">
+        <span class="label label-default" ng-bind="ctrl.filtered"></span>
+        /
+        <span class="label label-default" ng-bind="ctrl.count"></span>
+        <span class="fa fa-search"></span>
+        <input type="text" class="form-control" ng-model="ctrl.search" ng-change="ctrl.loadPersons()"/>
+    </span>
+</div>
+
+<table class="table table-hover" infinite-scroll="ctrl.incLimit()">
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>e-mail</th>
+            <th>Rok ur.</th>
+            <th>Grupy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="person in ctrl.persons" ng-click="ctrl.clickPerson(person._id)">
+            <td ng-bind="person.firstName"></td>
+            <td ng-bind="person.lastName"></td>
+            <td ng-bind="person.email"></td>
+            <td ng-bind="person.yearofbirth"></td>
+            <td>
+                <span ng-repeat="group in person.groups" ng-bind="group.name + ' '"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

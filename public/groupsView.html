@@ -1,0 +1,25 @@
+<div class="form-inline">
+    <button class="btn btn-primary fa fa-plus" ng-click="ctrl.newGroup()"></button>
+    <span style="float: right">
+        <span class="label label-default" ng-bind="ctrl.filtered"></span>
+        /
+        <span class="label label-default" ng-bind="ctrl.count"></span>
+        <span class="fa fa-search"></span>
+        <input type="text" class="form-control" ng-model="ctrl.search" ng-change="ctrl.loadGroups()"/>
+    </span>
+</div>
+
+<table class="table table-hover" infinite-scroll="ctrl.incLimit()">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Opis</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="group in ctrl.groups" ng-click="ctrl.clickGroup(group._id)">
+            <td ng-bind="group.name"></td>
+            <td ng-bind="group.description"></td>
+        </tr>
+    </tbody>
+</table>

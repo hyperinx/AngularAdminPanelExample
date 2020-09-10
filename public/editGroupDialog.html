@@ -1,0 +1,50 @@
+<form>
+
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">
+            Grupa
+        </h3>
+    </div>
+
+
+
+    <div class="modal-body" id="modal-body">
+        <label for="name">Nazwa</label>
+        <input class="form-control" id="name" type="text" ng-model="ctrl.opt.data.name" autofocus/>
+        <label for="name">Opis</label>
+        <input class="form-control" id="description" type="text" ng-model="ctrl.opt.data.description" autofocus/>
+        <label for="name">Lista członków</label>
+        <div class="form-inline">
+            <span style="float: right">
+                <span class="label label-default" ng-bind="ctrl.filtered"></span>
+                /
+                <span class="label label-default" ng-bind="ctrl.count"></span>
+                <span class="fa fa-search"></span>
+                <input type="text" class="form-control" ng-model="ctrl.search" ng-change="ctrl.loadPersons()"/>
+            </span>
+        </div>
+        
+        <table class="table table-hover" infinite-scroll="ctrl.incLimit()">
+            <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="person in ctrl.persons">
+                    <td ng-bind="person.firstName"></td>
+                    <td ng-bind="person.lastName"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-success fa fa-check" type="submit" ng-click="ctrl.save()" ng-if="!ctrl.opt.noSave"></button>
+        <button class="btn btn-danger fa fa-trash" type="button" ng-click="ctrl.delete()" ng-if="!ctrl.opt.noDelete"></button>
+        <button class="btn btn-warning fa fa-times" type="button" ng-click="ctrl.cancel()" ng-if="!ctrl.opt.noCancel"></button>
+    </div>
+
+</form>
